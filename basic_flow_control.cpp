@@ -1,10 +1,10 @@
-#include <iostream>
-
-/*  This is a basic flow-control example. 
+/*  
+    This is a basic flow control example. 
     The following example demonstrates the usage of 
     if-else statment, for loop and while loop in C++. 
 */
 
+#include <iostream>
 
 int main(){
 
