@@ -3,6 +3,7 @@
 #include <iostream>
 #include <cmath>
 #include <iomanip>   // for the std::setprevision() function 
+#include <chrono>    // for timing 
 
 double func(double x){
     return std::exp(x) + std::pow(x,3) - 5;
@@ -43,8 +44,12 @@ double Newton_method_while_loop(double initial_guess, double epsilon){
 int main(){
 
     // The root is around 1.19367
-    std::cout<< std::setprecision(10) << Newton_method_for_loop(2,100) << std::endl;
-    std::cout<< std::setprecision(10) << Newton_method_while_loop(2,1e-5) << std::endl;
+    auto start = std::chrono::high_resolution_clock::now();
+    std::cout << std::setprecision(15) << Newton_method_for_loop(2, 1e7) << std::endl;
+    auto end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> elapsed = end - start;
+    std::cout << "Time taken: " << elapsed.count() << " seconds" << std::endl;
+    // std::cout<< std::setprecision(10) << Newton_method_while_loop(2,1e-5) << std::endl;
 
     return 0; 
 }
