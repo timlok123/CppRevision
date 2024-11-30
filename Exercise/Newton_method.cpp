@@ -30,7 +30,6 @@ double Newton_method_for_loop(double initial_guess, int iteration){
 double Newton_method_while_loop(double initial_guess, double epsilon){
 
     double x_prev = initial_guess, x_next = initial_guess + 2 * epsilon;
-    int count = 0;
 
     while (std::fabs(x_next - x_prev) >= epsilon) {
         x_prev = x_next;
