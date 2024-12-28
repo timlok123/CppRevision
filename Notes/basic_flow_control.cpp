@@ -1,8 +1,8 @@
-/*  
-    This is a basic flow control example. 
-    The following example demonstrates the usage of 
-    if-else statment, for loop and while loop in C++. 
-*/
+// File: basic_flow_control.cpp
+// Author: timlok123 
+// Description: This is a basic flow control example. 
+//              The following example demonstrates the usage of 
+//              if-else statment, for loop and while loop in C++. 
 
 #include <iostream>
 
