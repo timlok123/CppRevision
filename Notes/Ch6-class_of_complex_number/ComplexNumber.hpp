@@ -11,8 +11,12 @@ class ComplexNumber
         double mImagPart;
     
     public:
-        ComplexNumber(); // constructor 
+        
+        // Constructors
+        ComplexNumber(); 
+        ComplexNumber(double x);
         ComplexNumber(double x, double y);
+        ComplexNumber(const ComplexNumber& OtherZ); // for others to copy the value from this object 
 
         std::string description; 
         
@@ -27,9 +31,17 @@ class ComplexNumber
 
         friend std::ostream& operator<<(std::ostream& output, 
                                             const ComplexNumber& z);  
+        friend double RealPart(const ComplexNumber& z);         // friend function declaration
+        friend double ImaginaryPart(const ComplexNumber& z);    // friend function declaration
+
         double getRealPart() const;
         double getImagPart() const;
 
+        void setRealPart(double x);
+        void setImagPart(double y);
+
+        ComplexNumber CalculateConjugate() const;
+        void setToConjugate();
 };
 
 // You can either choose use friend to access private instance or use the following, 

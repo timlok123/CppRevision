@@ -9,12 +9,28 @@ ComplexNumber::ComplexNumber()
     description = "This is a class for ComplexNumber";
 }
 
+// Constructor that set z = x + i (0) 
+ComplexNumber::ComplexNumber(double x)
+{
+    mRealPart = x;
+    mImagPart = 0.0;
+    description = "This is a class for ComplexNumber";
+}
+
 // Constructor that set z = x + iy 
 ComplexNumber::ComplexNumber(double x, double y)
 {
     mRealPart = x;
     mImagPart = y; 
     description = "This is a class for ComplexNumber";
+}
+
+// Copy constructor
+ComplexNumber::ComplexNumber(const ComplexNumber& OtherZ)
+{
+    mRealPart = OtherZ.mRealPart;
+    mImagPart =  OtherZ.mImagPart;
+    description =  OtherZ.description; 
 }
 
 
@@ -26,6 +42,16 @@ double ComplexNumber::CalculateModulus() const
 double ComplexNumber::CalculateArgument() const
 {
     return atan2(mImagPart, mRealPart); 
+}
+
+ComplexNumber ComplexNumber::CalculateConjugate() const
+{
+    return ComplexNumber(mRealPart, -mImagPart);
+}
+
+void ComplexNumber::setToConjugate()
+{
+    mImagPart = -mImagPart;
 }
 
 // Raise to the power n of z with formula z^n = (r e^(i theta))^n 
@@ -74,9 +100,31 @@ double ComplexNumber::getRealPart() const
     return mRealPart;
 }
 
+
 double ComplexNumber::getImagPart() const
 {
     return mImagPart;
+}
+
+void ComplexNumber::setRealPart(double x)
+{
+    mRealPart = x;
+}
+
+void ComplexNumber::setImagPart(double y)
+{
+    mImagPart = y;
+}
+
+// Friend function 
+double RealPart(const ComplexNumber& z) 
+{
+    return z.mRealPart;
+}
+
+double ImaginaryPart(const ComplexNumber& z) 
+{
+    return z.mImagPart;
 }
 
 // Overloading insertion << operator
