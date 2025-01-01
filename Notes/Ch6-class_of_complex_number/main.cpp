@@ -1,4 +1,7 @@
 #include "ComplexNumber.hpp"
+#include "ComplexMatrix.hpp"
+
+#include <iostream>
 
 int main()
 {
@@ -58,6 +61,10 @@ int main()
     // Test the setToConjugate function
     z1.setToConjugate();
     std::cout << "After setting z1 to its conjugate, z1 is " << z1 << std::endl;
+
+    // Test the complex matrix construction 
+    ComplexMatrix ZComplexMatrix;
+    ZComplexMatrix.ShowMatrix();
 
     return 0; 
 
