@@ -40,12 +40,16 @@ int main()
     ComplexNumber z7(0,0);
     std::cout << "0 to the power 0 is defined as  " << z7.CalculatePower(0) <<std::endl;
 
-    // Test the override + & - function 
+    // Test the override + , -, * function 
+    std::cout << "Test the +, -, * function"<<std::endl;
     ComplexNumber z3(4,3);
     std::cout << z1 + z3 << std::endl;
 
     ComplexNumber z4(4,5);
     std::cout << z1 - z4 << std::endl;
+
+    ComplexNumber z8(12.0,13.0);
+    std::cout << z1* z8 << std::endl;
 
     // Check the real part and imaginary part getter & friend function
     std::cout << "The real part of z1 is " << z1.getRealPart() << std::endl;
@@ -63,8 +67,67 @@ int main()
     std::cout << "After setting z1 to its conjugate, z1 is " << z1 << std::endl;
 
     // Test the complex matrix construction 
+    ComplexMatrix IdentityMatrix;
+    
+    IdentityMatrix.SetElement(0 , 0 , ComplexNumber(1.0));
+    IdentityMatrix.SetElement(1 , 1 , ComplexNumber(1.0));
+    IdentityMatrix.SetElement(2 , 2 , ComplexNumber(1.0));
+    IdentityMatrix.ShowMatrix();
+
+    // Test the unary -, + , -, * & matrix multiplication operator for ComplexMatrix
+    ComplexMatrix negMatrix = -IdentityMatrix;
+    std::cout << "The negative of the complex matrix is: " << std::endl;
+    negMatrix.ShowMatrix();
+
+    std::cout << "The sum of I and -I is: " << std::endl;
+    (negMatrix + IdentityMatrix).ShowMatrix();
+
+    std::cout << "The difference of I and I is: " << std::endl;
+    (IdentityMatrix - IdentityMatrix).ShowMatrix();
+
+    std::cout << "The multiple of 10 and I is: " << std::endl;
+    (IdentityMatrix*10).ShowMatrix();
+
+    // Test SetElement 
     ComplexMatrix ZComplexMatrix;
-    ZComplexMatrix.ShowMatrix();
+    std::cout << "Test SetElement()" << std::endl;
+    ZComplexMatrix.SetElement(0 , 0 , z1);
+    ZComplexMatrix.SetElement(0 , 2 , z1);
+    ZComplexMatrix.SetElement(2 , 0 , z1);
+    ZComplexMatrix.SetElement(2 , 2 , z1);
+    ZComplexMatrix.ShowMatrix(); 
+
+    // Test matrix multiplication 
+    ComplexMatrix matrixA;
+    ComplexMatrix matrixB;
+
+    // i. Set elements for matrixA & matrix B (Pauli matrix)
+    matrixA.SetElement(0, 0, ComplexNumber(1, 1));
+    matrixA.SetElement(0, 1, ComplexNumber(2, 2));
+    matrixA.SetElement(1, 0, ComplexNumber(3, 3));
+    matrixA.SetElement(1, 1, ComplexNumber(4, 4));
+
+    matrixB.SetElement(0, 1, ComplexNumber(0, -1));
+    matrixB.SetElement(1, 0, ComplexNumber(0, 1));
+
+    // ii. matrix multiplication
+    std::cout << "matrixA is" << std::endl;
+    matrixA.ShowMatrix();
+    std::cout << "matrixB is" << std::endl;
+    matrixB.ShowMatrix();
+
+    std::cout << "The result of matrixA * I is: " << std::endl;
+    ComplexMatrix resultMatrix = matrixA * IdentityMatrix;
+    resultMatrix.ShowMatrix();
+    
+    std::cout << "The result of matrixB * matrixB is: " << std::endl;
+    ComplexMatrix resultMatrix2 = matrixB * matrixB;
+    resultMatrix2.ShowMatrix();
+
+    // Test PowerN()
+    std::cout << "matrixB^5 is" << std::endl;
+    ComplexMatrix result3 = matrixB.PowerN(5);
+    result3.ShowMatrix();
 
     return 0; 
 

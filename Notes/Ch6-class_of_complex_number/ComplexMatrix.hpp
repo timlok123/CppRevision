@@ -16,18 +16,17 @@ class ComplexMatrix
         // Destructor 
         ~ComplexMatrix();
 
-        /*
         ComplexMatrix operator-() const;
         ComplexMatrix operator+(const ComplexMatrix& A) const;
         ComplexMatrix operator-(const ComplexMatrix& A) const;
         ComplexMatrix operator*(const ComplexMatrix& A) const;
-        ComplexMatrix operator*(double z) const;
-        ComplexMatrix operator/(double z) const;
+        ComplexMatrix operator*(double x) const;
+        ComplexMatrix PowerN(int n) const;
 
-        ComplexMatrix exp(const ComplexMatrix& A) const;
-        */
+        ComplexMatrix Exp(const ComplexMatrix& A) const;
        
-       void ShowMatrix();
+        void ShowMatrix();
+        void SetElement(int row, int col, ComplexNumber z);
 
 };
 

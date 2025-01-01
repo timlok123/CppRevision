@@ -95,11 +95,19 @@ ComplexNumber ComplexNumber::operator-(const ComplexNumber& z) const
     return ComplexNumber(mRealPart - z.mRealPart, mImagPart - z.mImagPart); 
 }
 
+// Overloading the * operator 
+ComplexNumber ComplexNumber::operator*(const ComplexNumber& z) const
+{
+    double real = mRealPart*z.mRealPart - mImagPart*z.mImagPart;
+    double imag = mRealPart*z.mImagPart + mImagPart*z.mRealPart;
+    return ComplexNumber(real, imag) ; 
+}
+
+
 double ComplexNumber::getRealPart() const
 {
     return mRealPart;
 }
-
 
 double ComplexNumber::getImagPart() const
 {
