@@ -20,8 +20,6 @@ ComplexMatrix::ComplexMatrix()
             mComplexMatrix3x3[i][j] = ComplexNumber();
         }
     }
-
-    //std::cout<< "3x3 complex matrix is created successfully !"<<std::endl;
     
 }
 
@@ -38,18 +36,20 @@ ComplexMatrix::~ComplexMatrix()
     // std::cout<<"The destructors is called."<<std::endl;
 }
 
-// Assignment operator
+// Overloading the assignment operator
 ComplexMatrix& ComplexMatrix::operator=(const ComplexMatrix& other)
 {
     if (this == &other)
         return *this;
 
+    // Destruct the current matrix 
     for (int i = 0; i < 3; ++i)
     {
         delete[] mComplexMatrix3x3[i];
     }
     delete[] mComplexMatrix3x3;
 
+    // Assign the other matrix elements to a new matrix 
     mComplexMatrix3x3 = new ComplexNumber*[3];
     for (int i = 0; i < 3; ++i)
     {
