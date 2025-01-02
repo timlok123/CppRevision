@@ -38,20 +38,6 @@ ComplexMatrix::~ComplexMatrix()
     // std::cout<<"The destructors is called."<<std::endl;
 }
 
-// Show the 3x3 matrix content 
-void ComplexMatrix::ShowMatrix() const
-{
-    
-    for (int i = 0; i < 3; ++i)
-    {
-        for (int j = 0; j< 3; ++j){
-            std::cout << mComplexMatrix3x3[i][j] << " ,";
-        }
-        std::cout<<std::endl;
-    }
-
-}
-
 // Assignment operator
 ComplexMatrix& ComplexMatrix::operator=(const ComplexMatrix& other)
 {
@@ -214,6 +200,20 @@ ComplexMatrix ComplexMatrix::Exp(const ComplexMatrix& A) const
 
     return result;
 
+
+}
+
+// Show the 3x3 matrix content 
+void ComplexMatrix::ShowMatrix() const
+{
+    
+    for (int i = 0; i < 3; ++i)
+    {
+        for (int j = 0; j< 3; ++j){
+            std::cout << mComplexMatrix3x3[i][j] << " ,";
+        }
+        std::cout<<std::endl;
+    }
 
 }
 

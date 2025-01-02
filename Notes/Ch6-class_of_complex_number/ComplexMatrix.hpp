@@ -23,8 +23,8 @@ class ComplexMatrix
         ComplexMatrix operator-(const ComplexMatrix& A) const;
         ComplexMatrix operator*(const ComplexMatrix& A) const;
         ComplexMatrix operator*(double x) const;
-        ComplexMatrix PowerN(int n) const;
 
+        ComplexMatrix PowerN(int n) const;
         ComplexMatrix Exp(const ComplexMatrix& A) const;
        
         void ShowMatrix() const;
