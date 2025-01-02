@@ -16,6 +16,8 @@ class ComplexMatrix
         // Destructor 
         ~ComplexMatrix();
 
+        ComplexMatrix& operator=(const ComplexMatrix& other); // Assignment operator
+
         ComplexMatrix operator-() const;
         ComplexMatrix operator+(const ComplexMatrix& A) const;
         ComplexMatrix operator-(const ComplexMatrix& A) const;
@@ -25,7 +27,7 @@ class ComplexMatrix
 
         ComplexMatrix Exp(const ComplexMatrix& A) const;
        
-        void ShowMatrix();
+        void ShowMatrix() const;
         void SetElement(int row, int col, ComplexNumber z);
 
 };

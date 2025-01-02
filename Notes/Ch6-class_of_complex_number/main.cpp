@@ -126,8 +126,11 @@ int main()
 
     // Test PowerN()
     std::cout << "matrixB^5 is" << std::endl;
-    ComplexMatrix result3 = matrixB.PowerN(5);
-    result3.ShowMatrix();
+    (matrixB.PowerN(4)).ShowMatrix();
+
+    // Test Exp()
+    std::cout << "The exponential of identify matrix is: " << std::endl;
+    (IdentityMatrix.Exp(IdentityMatrix)).ShowMatrix();
 
     return 0; 
 

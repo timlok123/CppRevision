@@ -39,7 +39,8 @@ ComplexMatrix::~ComplexMatrix()
 }
 
 // Show the 3x3 matrix content 
-void ComplexMatrix::ShowMatrix(){
+void ComplexMatrix::ShowMatrix() const
+{
     
     for (int i = 0; i < 3; ++i)
     {
@@ -49,6 +50,31 @@ void ComplexMatrix::ShowMatrix(){
         std::cout<<std::endl;
     }
 
+}
+
+// Assignment operator
+ComplexMatrix& ComplexMatrix::operator=(const ComplexMatrix& other)
+{
+    if (this == &other)
+        return *this;
+
+    for (int i = 0; i < 3; ++i)
+    {
+        delete[] mComplexMatrix3x3[i];
+    }
+    delete[] mComplexMatrix3x3;
+
+    mComplexMatrix3x3 = new ComplexNumber*[3];
+    for (int i = 0; i < 3; ++i)
+    {
+        mComplexMatrix3x3[i] = new ComplexNumber[3];
+        for (int j = 0; j < 3; ++j)
+        {
+            mComplexMatrix3x3[i][j] = other.mComplexMatrix3x3[i][j];
+        }
+    }
+
+    return *this;
 }
 
 // Overloading the unary/negative (-) operator. It return the negative without modifying the
@@ -113,8 +139,7 @@ ComplexMatrix ComplexMatrix::operator*(double x) const
     return newMatrix;
 }
 
-// Overloading * (ComplexMatrix) operator. Return the matrix multiple. 
-// TODO: Debug the following 
+// Overloading * operator. Return the matrix after multiplying the matrix A
 ComplexMatrix ComplexMatrix::operator*(const ComplexMatrix& A) const
 {
     ComplexMatrix matMulMatrix;
@@ -122,19 +147,17 @@ ComplexMatrix ComplexMatrix::operator*(const ComplexMatrix& A) const
     {
         for (int j = 0; j < 3; ++j)
         {
+            matMulMatrix.mComplexMatrix3x3[i][j] = ComplexNumber(); // Initialize to zero
             for (int k = 0; k < 3; ++k)
             {
                 matMulMatrix.mComplexMatrix3x3[i][j] = matMulMatrix.mComplexMatrix3x3[i][j] + 
-                                                    (this->mComplexMatrix3x3[i][k]*
-                                                        A.mComplexMatrix3x3[k][j]);
+                                                    (this->mComplexMatrix3x3[i][k] * A.mComplexMatrix3x3[k][j]);
             }
         }
     }
-
     return matMulMatrix;
 }
-
-// Raise the matrix to power n. 
+// Raise the matrix to power n (for loop approach)
 ComplexMatrix ComplexMatrix::PowerN(int n) const
 {
     ComplexMatrix result; // Initialize as the identity matrix
@@ -149,14 +172,49 @@ ComplexMatrix ComplexMatrix::PowerN(int n) const
         }
     }
 
+    
     ComplexMatrix base = *this;
 
     for (int i = 0; i < n; i++)
     {
-        result = result * base;
+        result = (result * base);
     } 
     
     return result;
+}
+
+ComplexMatrix ComplexMatrix::Exp(const ComplexMatrix& A) const
+{
+    ComplexMatrix result; // Initialize as the identity matrix
+
+    ComplexMatrix term; // Initialize as the identity matrix
+    for (int i = 0; i < 3; ++i)
+    {
+        for (int j = 0; j < 3; ++j)
+        {
+            if (i == j)
+                term.mComplexMatrix3x3[i][j] = ComplexNumber(1, 0); // Assuming ComplexNumber has a constructor that takes real and imaginary parts
+            else
+                term.mComplexMatrix3x3[i][j] = ComplexNumber(0, 0);
+        }
+    }
+
+    result = term; // Start with the identity matrix
+    ComplexMatrix power = A; // A^1
+    int factorial = 1;
+    int cutOffM = 30;
+
+    for (int n = 1; n < cutOffM; ++n) // Sum the series up to n terms
+    {
+        term = power * (1.0 / factorial);
+        result = result + term;
+        power = power * A;
+        factorial *= (n + 1);
+    }
+
+    return result;
+
+
 }
 
 // Set the matrix elements as z by specifying matrix's row and col.  
