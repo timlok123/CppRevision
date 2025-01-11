@@ -14,7 +14,6 @@
 #include <cmath>
 #include <vector>
 
-/*
 int main()
 {
     double sum = 0; 
@@ -49,8 +48,8 @@ int main()
     return 0; 
 
 }
-*/
 
+/*
 // Use a vector to store the values from different ranks 
 
 int main()
@@ -91,5 +90,6 @@ int main()
     MPI::Finalize();
     return 0;
 }
+*/
 
 
